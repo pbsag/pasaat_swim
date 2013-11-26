@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="module_pasaat" default="compile.module.pasaat">
+  <dirname property="module.pasaat_swim.basedir" file="${ant.file.module_pasaat}"/>
+  
+  <property name="module.jdk.home.pasaat" value="${project.jdk.home}"/>
+  <property name="module.jdk.classpath.pasaat" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.pasaat" value="${compiler.args}"/>
+  
+  <property name="pasaat_swim.output.dir" value="${module.pasaat_swim.basedir}/build/classes"/>
+  <property name="pasaat_swim.testoutput.dir" value="${module.pasaat_swim.basedir}/build/classes"/>
+  
+  <path id="pasaat_swim.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="pasaat_swim.module.classpath">
+    <path refid="${module.jdk.classpath.pasaat}"/>
+    <pathelement location="${common-base.output.dir}"/>
+    <pathelement location="${module.pasaat_swim.basedir}/../../third-party/logging-log4j-1.2.9/log4j-1.2.9.jar"/>
+    <pathelement location="${module.pasaat_swim.basedir}/../../cmf/common-base/lib/junit-4.1.jar"/>
+    <pathelement location="${common-daf-v2.output.dir}"/>
+    <pathelement location="${reference.output.dir}"/>
+    <pathelement location="${utils.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.pasaat"/>
+  
+  <patternset id="excluded.from.compilation.pasaat">
+    <patternset refid="excluded.from.module.pasaat"/>
+    <patternset refid="compiler.excluded"/>
+  </patternset>
+  
+  <path id="pasaat_swim.module.sourcepath">
+    <dirset dir="${module.pasaat_swim.basedir}">
+      <include name="src/java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.pasaat" depends="compile.module.common-base, compile.module.common-daf-v2, compile.module.reference, compile.module.utils" description="compile module pasaat production classes">
+    <mkdir dir="${pasaat_swim.output.dir}"/>
+    <javac destdir="${pasaat_swim.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memoryMaximumSize="${compiler.max.memory}" fork="true" executable="${module.jdk.home.pasaat}/bin/javac">
+      <compilerarg line="${compiler.args.pasaat}"/>
+      <bootclasspath refid="pasaat_swim.module.bootclasspath"/>
+      <classpath refid="pasaat_swim.module.classpath"/>
+      <src refid="pasaat_swim.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.pasaat"/>
+    </javac>
+    <copy todir="${pasaat_swim.output.dir}">
+      <fileset dir="${module.pasaat_swim.basedir}/src/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.pasaat"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.pasaat" description="cleanup module">
+    <delete dir="${pasaat_swim.output.dir}"/>
+    <delete dir="${pasaat_swim.testoutput.dir}"/>
+  </target>
+</project>
