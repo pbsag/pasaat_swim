@@ -26,8 +26,8 @@ public enum LDTripModeType {
     SR2,
     SR3P,
     AIR, 
-    TRANSIT_WALK,
-    TRANSIT_DRIVE,
-    HSR_WALK,
-    HSR_DRIVE;
+    TRANSIT_WALK; //,
+//    TRANSIT_DRIVE,
+//    HSR_WALK,
+//    HSR_DRIVE;
 }

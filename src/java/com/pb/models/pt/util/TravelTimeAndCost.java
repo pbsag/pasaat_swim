@@ -58,18 +58,19 @@ public class TravelTimeAndCost {
 	public float walkTransitNumberBoardings;
 	public float walkTransitWalkTime;
 	public float walkTransitFare;
+    public float transitOvt;
 
-	public float driveTransitInVehicleTime;
-	public float driveTransitFirstWaitTime;
-	public float driveTransitShortFirstWaitTime;
-	public float driveTransitLongFirstWaitTime;
-	public float driveTransitTotalWaitTime;
-	public float driveTransitTransferWaitTime;
-	public float driveTransitNumberBoardings;
-	public float driveTransitWalkTime;
-	public float driveTransitDriveTime;
-	public float driveTransitDriveCost;
-	public float driveTransitFare;
+//	public float driveTransitInVehicleTime;
+//	public float driveTransitFirstWaitTime;
+//	public float driveTransitShortFirstWaitTime;
+//	public float driveTransitLongFirstWaitTime;
+//	public float driveTransitTotalWaitTime;
+//	public float driveTransitTransferWaitTime;
+//	public float driveTransitNumberBoardings;
+//	public float driveTransitWalkTime;
+//	public float driveTransitDriveTime;
+//	public float driveTransitDriveCost;
+//	public float driveTransitFare;
 
 	public TravelTimeAndCost(){
 
@@ -108,21 +109,22 @@ public class TravelTimeAndCost {
         	 logger.info("walkTransitNumberBoardings      = "+walkTransitNumberBoardings);
         	 logger.info("walkTransitWalkTime             = "+walkTransitWalkTime);
         	 logger.info("walkTransitFare                 = "+walkTransitFare);
+             logger.info("transitOvt                      = "+transitOvt);
          }
 
-         logger.info("driveTransitInVehicleTime       = "+driveTransitInVehicleTime);
-         if (driveTransitInVehicleTime > 0) {
-             logger.info("driveTransitFirstWaitTime       = "+driveTransitFirstWaitTime);
-             logger.info("driveTransitShortFirstWaitTime  = "+driveTransitShortFirstWaitTime);
-             logger.info("driveTransitLongFirstWaitTime   = "+driveTransitLongFirstWaitTime);
-             logger.info("driveTransitTotalWaitTime       = "+driveTransitTotalWaitTime);
-             logger.info("driveTransitTransferWaitTime    = "+driveTransitTransferWaitTime);
-             logger.info("driveTransitNumberBoardings     = "+driveTransitNumberBoardings);
-             logger.info("driveTransitWalkTime            = "+driveTransitWalkTime);
-             logger.info("driveTransitDriveTime           = "+driveTransitDriveTime);
-             logger.info("driveTransitDriveCost           = "+driveTransitDriveCost);
-             logger.info("driveTransitFare                = "+driveTransitFare);
-         }
+//         logger.info("driveTransitInVehicleTime       = "+driveTransitInVehicleTime);
+//         if (driveTransitInVehicleTime > 0) {
+//             logger.info("driveTransitFirstWaitTime       = "+driveTransitFirstWaitTime);
+//             logger.info("driveTransitShortFirstWaitTime  = "+driveTransitShortFirstWaitTime);
+//             logger.info("driveTransitLongFirstWaitTime   = "+driveTransitLongFirstWaitTime);
+//             logger.info("driveTransitTotalWaitTime       = "+driveTransitTotalWaitTime);
+//             logger.info("driveTransitTransferWaitTime    = "+driveTransitTransferWaitTime);
+//             logger.info("driveTransitNumberBoardings     = "+driveTransitNumberBoardings);
+//             logger.info("driveTransitWalkTime            = "+driveTransitWalkTime);
+//             logger.info("driveTransitDriveTime           = "+driveTransitDriveTime);
+//             logger.info("driveTransitDriveCost           = "+driveTransitDriveCost);
+//             logger.info("driveTransitFare                = "+driveTransitFare);
+//         }
      };
 
     public void print(PrintWriter file){
@@ -149,17 +151,18 @@ public class TravelTimeAndCost {
 		file.println("\twalkTransitNumberBoardings = "+walkTransitNumberBoardings);
 		file.println("\twalkTransitWalkTime = "+walkTransitWalkTime);
 		file.println("\twalkTransitFare = "+walkTransitFare);
-		file.println("\tdriveTransitInVehicleTime = "+driveTransitInVehicleTime);
-		file.println("\tdriveTransitFirstWaitTime = "+driveTransitFirstWaitTime);
-		file.println("\tdriveTransitShortFirstWaitTime = "+driveTransitShortFirstWaitTime);
-		file.println("\tdriveTransitLongFirstWaitTime = "+driveTransitLongFirstWaitTime);
-		file.println("\tdriveTransitTotalWaitTime = "+driveTransitTotalWaitTime);
-		file.println("\tdriveTransitTransferWaitTime = "+driveTransitTransferWaitTime);
-		file.println("\tdriveTransitNumberBoardings = "+driveTransitNumberBoardings);
-		file.println("\tdriveTransitWalkTime = "+driveTransitWalkTime);
-		file.println("\tdriveTransitDriveTime = "+driveTransitDriveTime);
-		file.println("\tdriveTransitDriveCost = "+driveTransitDriveCost);
-		file.println("\tdriveTransitFare= "+driveTransitFare);
+        file.println("\ttransitOvt = "+transitOvt);
+//		file.println("\tdriveTransitInVehicleTime = "+driveTransitInVehicleTime);
+//		file.println("\tdriveTransitFirstWaitTime = "+driveTransitFirstWaitTime);
+//		file.println("\tdriveTransitShortFirstWaitTime = "+driveTransitShortFirstWaitTime);
+//		file.println("\tdriveTransitLongFirstWaitTime = "+driveTransitLongFirstWaitTime);
+//		file.println("\tdriveTransitTotalWaitTime = "+driveTransitTotalWaitTime);
+//		file.println("\tdriveTransitTransferWaitTime = "+driveTransitTransferWaitTime);
+//		file.println("\tdriveTransitNumberBoardings = "+driveTransitNumberBoardings);
+//		file.println("\tdriveTransitWalkTime = "+driveTransitWalkTime);
+//		file.println("\tdriveTransitDriveTime = "+driveTransitDriveTime);
+//		file.println("\tdriveTransitDriveCost = "+driveTransitDriveCost);
+//		file.println("\tdriveTransitFare= "+driveTransitFare);
         file.println();
         file.println();
 

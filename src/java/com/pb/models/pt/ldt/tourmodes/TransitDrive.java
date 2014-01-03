@@ -56,7 +56,7 @@ public class TransitDrive extends Mode {
         hasUtility = false;
         utility = 0.0D;
         alternativeName = new String("TransitDrive");
-        type = LDTourModeType.TRANSIT_DRIVE;
+//        type = LDTourModeType.TRANSIT_DRIVE;
         TransitDrive.m = type.ordinal();
 
         // get some parameters used to calculate cost
@@ -126,13 +126,13 @@ public class TransitDrive extends Mode {
             utility = 0;
             utility += c[INVEHICLETIME] * tc.inVehicleTime [TransitDrive.m];
             utility += c[WALKTIME] * tc.walkTime      [TransitDrive.m];
-            utility += c[DRIVETIME] * tc.driveTime     [TransitDrive.m];
+//            utility += c[DRIVETIME] * tc.driveTime     [TransitDrive.m];
             utility += c[WAITTIME] * tc.waitTime [TransitDrive.m];
             utility += c[TERMINALTIME  ] * tc.terminalTime[TransitDrive.m]; 
             utility += c[COSTINC020] * cost * hh.inclow;
             utility += c[COSTINC2060] * cost * hh.incmed;
             utility += c[COSTINC60P] * cost * hh.inchi;
-            utility += c[CONSTTRANSIT_DRIVE];
+//            utility += c[CONSTTRANSIT_DRIVE];
 
             hasUtility = true;
         }

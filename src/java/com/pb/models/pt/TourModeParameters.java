@@ -38,96 +38,98 @@ public class TourModeParameters {
 
     public static final int WLK = 7;
 
-    public static final int DRV = 8;
+//    public static final int DRV = 8;
 
-    public static final int WALK_TIME = 9;
+    public static final int WALK_TIME = 8;
 
-    public static final int BIKE_TIME = 10;
+    public static final int BIKE_TIME = 9;
 
-    public static final int PASS_STOPS = 11;
+    public static final int PASS_STOPS = 10;
 
-    public static final int WALK_STOPS = 12;
+    public static final int WALK_STOPS = 11;
 
-    public static final int BIKE_STOPS = 13;
+    public static final int BIKE_STOPS = 12;
 
-    public static final int WALK_TRAN_STOPS = 14;
+    public static final int WALK_TRAN_STOPS = 13;
 
-    public static final int TRAN_PASS_STOPS = 15;
+    public static final int TRAN_PASS_STOPS = 14;
 
-    public static final int PASS_TRAN_STOPS = 16;
+    public static final int PASS_TRAN_STOPS = 15;
 
-    public static final int DRV_TRAN_STOPS = 17;
+    public static final int DRV_TRAN_STOPS = 16;
 
-    public static final int PASS_H1 = 18;
+    public static final int PASS_H1 = 17;
 
-    public static final int PASS_H2 = 19;
+    public static final int PASS_H2 = 18;
 
-    public static final int PASS_H3 = 20;
+    public static final int PASS_H3 = 19;
 
-    public static final int CAR = 21;
+    public static final int CAR = 20;
 
-    public static final int CAR_AW_0 = 22;
+    public static final int CAR_AW_0 = 21;
 
-    public static final int CAR_AW_I = 23;
+    public static final int CAR_AW_I = 22;
 
-    public static final int CAR_AW_S = 24;
+    public static final int CAR_AW_S = 23;
 
-    public static final int PASS = 25;
+    public static final int PASS = 24;
 
-    public static final int PASS_AW_0 = 26;
+    public static final int PASS_AW_0 = 25;
 
-    public static final int PASS_AW_I = 27;
+    public static final int PASS_AW_I = 26;
 
-    public static final int PASS_AW_S = 28;
+    public static final int PASS_AW_S = 27;
 
-    public static final int WALK = 29;
+    public static final int WALK = 28;
 
-    public static final int WALK_AW_0 = 30;
+    public static final int WALK_AW_0 = 29;
 
-    public static final int WALK_AW_I = 31;
+    public static final int WALK_AW_I = 30;
 
-    public static final int WALK_AW_S = 32;
+    public static final int WALK_AW_S = 31;
 
-    public static final int BIKE = 33;
+    public static final int BIKE = 32;
 
-    public static final int BIKE_AW_0 = 34;
+    public static final int BIKE_AW_0 = 33;
 
-    public static final int BIKE_AW_I = 35;
+    public static final int BIKE_AW_I = 34;
 
-    public static final int BIKE_AW_S = 36;
+    public static final int BIKE_AW_S = 35;
 
-    public static final int WALK_TRAN = 37;
+    public static final int WALK_TRAN = 36;
 
-    public static final int WALK_TRAN_AW_0 = 38;
+    public static final int WALK_TRAN_AW_0 = 37;
 
-    public static final int WALK_TRAN_AW_I = 39;
+    public static final int WALK_TRAN_AW_I = 38;
 
-    public static final int WALK_TRAN_AW_S = 40;
+    public static final int WALK_TRAN_AW_S = 39;
 
-    public static final int TRAN_PASS = 41;
+    public static final int TRAN_PASS = 40;
 
-    public static final int TRAN_PASS_AW_0 = 42;
+    public static final int TRAN_PASS_AW_0 = 41;
 
-    public static final int TRAN_PASS_AW_I = 43;
+    public static final int TRAN_PASS_AW_I = 42;
 
-    public static final int TRAN_PASS_AW_S = 44;
+    public static final int TRAN_PASS_AW_S = 43;
 
-    public static final int PASS_TRAN = 45;
+    public static final int PASS_TRAN = 44;
 
-    public static final int PASS_TRAN_AW_0 = 46;
+    public static final int PASS_TRAN_AW_0 = 45;
 
-    public static final int PASS_TRAN_AW_I = 47;
+    public static final int PASS_TRAN_AW_I = 46;
 
-    public static final int PASS_TRAN_AW_S = 48;
+    public static final int PASS_TRAN_AW_S = 47;
 
-    public static final int DRV_TRAN = 49;
+//    public static final int DRV_TRAN = 49;
+//
+//    public static final int DRV_TRAN_AW_0 = 50;
+//
+//    public static final int DRV_TRAN_AW_I = 51;
+//
+//    public static final int DRV_TRAN_AW_S = 52;
 
-    public static final int DRV_TRAN_AW_0 = 50;
-    
-    public static final int DRV_TRAN_AW_I = 51;
-    
-    public static final int DRV_TRAN_AW_S = 52;
+    public static final int NEST = 48;
 
-    public static final int NEST = 53;
+    public static final int OVT = 49;
 
 }

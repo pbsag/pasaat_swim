@@ -26,9 +26,9 @@ import com.pb.models.pt.TazManager;
 import static com.pb.models.pt.ldt.LDInternalModeChoiceParameters.*;
 import com.pb.models.pt.ldt.tourmodes.Air;
 import com.pb.models.pt.ldt.tourmodes.Auto;
-import com.pb.models.pt.ldt.tourmodes.HsrDrive;
-import com.pb.models.pt.ldt.tourmodes.HsrWalk;
-import com.pb.models.pt.ldt.tourmodes.TransitDrive;
+//import com.pb.models.pt.ldt.tourmodes.HsrDrive;
+//import com.pb.models.pt.ldt.tourmodes.HsrWalk;
+//import com.pb.models.pt.ldt.tourmodes.TransitDrive;
 import com.pb.models.pt.ldt.tourmodes.TransitWalk;
 import org.apache.log4j.Logger;
 
@@ -56,15 +56,15 @@ public class LDInternalModeChoiceModel {
     protected LogitModel root;
     protected LogitModel groundNest;
     protected LogitModel transitNest;
-    protected LogitModel hsrNest;
+//    protected LogitModel hsrNest;
 
     //Elemental Alternatives                
     protected Auto auto;
     protected Air air; 
     protected TransitWalk transitWalk;
-    protected TransitDrive transitDrive;
-    protected HsrWalk hsrWalk;
-    protected HsrDrive hsrDrive;
+//    protected TransitDrive transitDrive;
+//    protected HsrWalk hsrWalk;
+//    protected HsrDrive hsrDrive;
     
     // The model parameters, for each purpose
     protected float[][] parameters;
@@ -107,23 +107,23 @@ public class LDInternalModeChoiceModel {
         root        = new LogitModel("root");
         groundNest  = new LogitModel("Ground Transit-HighSpeedRail Nest");
         transitNest = new LogitModel("Transit Walk-Drive Nest");
-        hsrNest     = new LogitModel("HSR Walk-Drive Nest");
+//        hsrNest     = new LogitModel("HSR Walk-Drive Nest");
         
         auto         = new Auto(rb);
         air          = new Air(rb);
         transitWalk  = new TransitWalk(rb);
-        transitDrive = new TransitDrive(rb);
-        hsrWalk      = new HsrWalk(rb);
-        hsrDrive     = new HsrDrive(rb);
+//        transitDrive = new TransitDrive(rb);
+//        hsrWalk      = new HsrWalk(rb);
+//        hsrDrive     = new HsrDrive(rb);
         
         transitNest.addAlternative(transitWalk);
-        transitNest.addAlternative(transitDrive);
-        
-        hsrNest.addAlternative(hsrWalk);
-        hsrNest.addAlternative(hsrDrive);
+//        transitNest.addAlternative(transitDrive);
+//
+//        hsrNest.addAlternative(hsrWalk);
+//        hsrNest.addAlternative(hsrDrive);
 
         groundNest.addAlternative(transitNest);
-        groundNest.addAlternative(hsrNest);
+//        groundNest.addAlternative(hsrNest);
 
         root.addAlternative(auto);
         root.addAlternative(air);
@@ -132,7 +132,7 @@ public class LDInternalModeChoiceModel {
         // set dispersion parameters
         groundNest.setDispersionParameter(root.getDispersionParameter() / parameters[0][NESTGROUND]);
         transitNest.setDispersionParameter(groundNest.getDispersionParameter() / parameters[0][NESTTRANSIT]);
-        hsrNest.setDispersionParameter(groundNest.getDispersionParameter() / parameters[0][NESTHSR]);
+//        hsrNest.setDispersionParameter(groundNest.getDispersionParameter() / parameters[0][NESTHSR]);
     }
     
     /**
@@ -194,17 +194,17 @@ public class LDInternalModeChoiceModel {
                 householdAttributes, tour, impedance);
         boolean isTransitWalkAvailable = transitWalk.calculateUtility(
                 purposeParams, householdAttributes, tour, impedance);
-        boolean isTransitDriveAvailable = transitDrive.calculateUtility(
-                purposeParams, householdAttributes, tour, impedance);
-        boolean isHsrWalkAvailable = hsrWalk.calculateUtility(purposeParams,
-                householdAttributes, tour, impedance);
-        boolean isHsrDriveAvailable = hsrDrive.calculateUtility(purposeParams,
-                householdAttributes, tour, impedance);
+//        boolean isTransitDriveAvailable = transitDrive.calculateUtility(
+//                purposeParams, householdAttributes, tour, impedance);
+//        boolean isHsrWalkAvailable = hsrWalk.calculateUtility(purposeParams,
+//                householdAttributes, tour, impedance);
+//        boolean isHsrDriveAvailable = hsrDrive.calculateUtility(purposeParams,
+//                householdAttributes, tour, impedance);
 
         // if no other modes are available, auto will be.
         boolean isNonAutoModeAvailable;
-        if (isAirAvailable | isTransitWalkAvailable | isTransitDriveAvailable
-                | isHsrWalkAvailable | isHsrDriveAvailable) {
+        if (isAirAvailable | isTransitWalkAvailable) { // | isTransitDriveAvailable
+//                | isHsrWalkAvailable | isHsrDriveAvailable) {
             isNonAutoModeAvailable = true;
         } else {
             isNonAutoModeAvailable = false;
@@ -227,15 +227,15 @@ public class LDInternalModeChoiceModel {
             if (transitWalk.isAvailable) {
                 logger.info("      The transit walk access utility is          " + transitWalk.getUtility());
             }
-            if (transitDrive.isAvailable) {
-                logger.info("      The transit drive utility is                " + transitDrive.getUtility());
-            }
-            if (hsrWalk.isAvailable) {
-                logger.info("      The high speed rail walk access utility is  " + hsrWalk.getUtility());
-            }
-            if (hsrDrive.isAvailable) {
-                logger.info("      The high speed rail drive access utility is " + hsrDrive.getUtility());
-            }
+//            if (transitDrive.isAvailable) {
+//                logger.info("      The transit drive utility is                " + transitDrive.getUtility());
+//            }
+//            if (hsrWalk.isAvailable) {
+//                logger.info("      The high speed rail walk access utility is  " + hsrWalk.getUtility());
+//            }
+//            if (hsrDrive.isAvailable) {
+//                logger.info("      The high speed rail drive access utility is " + hsrDrive.getUtility());
+//            }
         }
         return logsum;
     }

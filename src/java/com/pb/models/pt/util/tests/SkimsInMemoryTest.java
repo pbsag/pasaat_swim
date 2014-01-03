@@ -208,10 +208,10 @@ public class SkimsInMemoryTest {
         checkMatrix(skimsInMemory.pkTime);
         checkMatrix(skimsInMemory.pkToll);
 
-        checkMatrixCollection(skimsInMemory.opdrv);
+//        checkMatrixCollection(skimsInMemory.opdrv);
         checkMatrixCollection(skimsInMemory.opwlk);
 
-        checkMatrixCollection(skimsInMemory.pkdrv);
+//        checkMatrixCollection(skimsInMemory.pkdrv);
         checkMatrixCollection(skimsInMemory.pkwlk);
     }
 

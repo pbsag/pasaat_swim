@@ -265,39 +265,39 @@ public class TripModeChoiceModel extends TimedModel {
              }
          
              // DRIVETRANSIT Tours should be either DRIVETRANSIT trips or choose between WALK or WALKTRANSIT
-             if(thisTour.primaryMode.type == TourModeType.DRIVETRANSIT){
-                 
-                if(i==1 || i==trips){
-                    //first and last trips on DRIVETRANSIT tours should be DRIVETRANSIT
-                    destinationActivity.tripMode = TripModeType.DR_TRAN;
-                    destinationActivity.distanceToActivity = cost.driveAloneDistance;
-                    destinationActivity.timeToActivity = (short) (cost.driveTransitWalkTime
-                        + cost.driveTransitDriveTime + cost.driveTransitTotalWaitTime + cost.driveTransitInVehicleTime);
-                 }else{
-                    //and middle trips should choose between WALK and WALKTRANSIT 
-                     personAttributes.setAttributes(thisHousehold,thisPerson, thisTour, i);
-                     driveAlone.setUtility(-999);
-                     sharedRide2.setUtility(-999);
-                     sharedRide3Plus.setUtility(-999);
-                     schoolBus.setUtility(-999);
-                     walkTrip.calcUtility(cost, purposeParams, personAttributes);
-                     walkTransitTrip.calcUtility(cost, purposeParams, personAttributes);
-
-                     Mode tripMode = chooseMode(cost,
-                             personAttributes,
-                             thisTour.primaryMode,
-                             thisTour.primaryDestination.activityPurpose,
-                             zoneAttributesDestination,
-                             thisHousehold.ID,
-                             thisPerson.memberID,
-                             random
-                             );        
-                     destinationActivity.tripMode = (TripModeType) tripMode.type;
-                     destinationActivity.distanceToActivity = cost.driveAloneDistance;
-                     destinationActivity.timeToActivity = (short) tripMode.time;             
-                 
-                 }
-             }
+//             if(thisTour.primaryMode.type == TourModeType.DRIVETRANSIT){
+//
+//                if(i==1 || i==trips){
+//                    //first and last trips on DRIVETRANSIT tours should be DRIVETRANSIT
+//                    destinationActivity.tripMode = TripModeType.DR_TRAN;
+//                    destinationActivity.distanceToActivity = cost.driveAloneDistance;
+//                    destinationActivity.timeToActivity = (short) (cost.driveTransitWalkTime
+//                        + cost.driveTransitDriveTime + cost.driveTransitTotalWaitTime + cost.driveTransitInVehicleTime);
+//                 }else{
+//                    //and middle trips should choose between WALK and WALKTRANSIT
+//                     personAttributes.setAttributes(thisHousehold,thisPerson, thisTour, i);
+//                     driveAlone.setUtility(-999);
+//                     sharedRide2.setUtility(-999);
+//                     sharedRide3Plus.setUtility(-999);
+//                     schoolBus.setUtility(-999);
+//                     walkTrip.calcUtility(cost, purposeParams, personAttributes);
+//                     walkTransitTrip.calcUtility(cost, purposeParams, personAttributes);
+//
+//                     Mode tripMode = chooseMode(cost,
+//                             personAttributes,
+//                             thisTour.primaryMode,
+//                             thisTour.primaryDestination.activityPurpose,
+//                             zoneAttributesDestination,
+//                             thisHousehold.ID,
+//                             thisPerson.memberID,
+//                             random
+//                             );
+//                     destinationActivity.tripMode = (TripModeType) tripMode.type;
+//                     destinationActivity.distanceToActivity = cost.driveAloneDistance;
+//                     destinationActivity.timeToActivity = (short) tripMode.time;
+//
+//                 }
+//             }
  
              
              //AUTODRIVER Tours should choose between DRIVEALONE, SHARED2, SHARED3PLUS

@@ -56,7 +56,7 @@ public class HsrDrive extends Mode {
         hasUtility = false;
         utility = 0.0D;
         alternativeName = new String("HighSpeedRailDrive");
-        type = LDTourModeType.HSR_DRIVE;
+//        type = LDTourModeType.HSR_DRIVE;
         HsrDrive.m = type.ordinal();
 
         // get some parameters used to calculate cost
@@ -127,13 +127,13 @@ public class HsrDrive extends Mode {
             utility += c[INVEHICLETIME] * tc.inVehicleTime [HsrDrive.m];
             utility += c[HSRINVEHICLETIME] * tc.inVehicleTime [HsrDrive.m];
             utility += c[WALKTIME] * tc.walkTime      [HsrDrive.m];
-            utility += c[DRIVETIME] * tc.driveTime     [HsrDrive.m];
+//            utility += c[DRIVETIME] * tc.driveTime     [HsrDrive.m];
             utility += c[WAITTIME] * tc.waitTime [HsrDrive.m];
             utility += c[TERMINALTIME  ] * tc.terminalTime[HsrDrive.m]; 
             utility += c[COSTINC020] * cost * hh.inclow;
             utility += c[COSTINC2060] * cost * hh.incmed;
             utility += c[COSTINC60P] * cost * hh.inchi;
-            utility += c[CONSTHSR_DRIVE];
+//            utility += c[CONSTHSR_DRIVE];
             
             // account for frequency in Oregon
             if (c.length>FREQUENCYCOEFFICIENT) {

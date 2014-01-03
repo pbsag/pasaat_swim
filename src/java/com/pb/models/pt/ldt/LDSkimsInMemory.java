@@ -349,9 +349,9 @@ public class LDSkimsInMemory {
                     switch(mode[m]) {
                         case AIR           : tc.terminalTime[m] = 90; break; 
                         case TRANSIT_WALK  : tc.terminalTime[m] = 30; break;
-                        case TRANSIT_DRIVE : tc.terminalTime[m] = 30; break;
-                        case HSR_WALK      : tc.terminalTime[m] = 30; break;
-                        case HSR_DRIVE     : tc.terminalTime[m] = 30; break;
+//                        case TRANSIT_DRIVE : tc.terminalTime[m] = 30; break;
+//                        case HSR_WALK      : tc.terminalTime[m] = 30; break;
+//                        case HSR_DRIVE     : tc.terminalTime[m] = 30; break;
                         default : tc.terminalTime[m] = 0; 
                     }
                     

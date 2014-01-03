@@ -101,8 +101,8 @@ public class TripModePersonAttributes {
             passengerLeg=1;
         else if((TourModeType)thisTour.primaryMode.type ==TourModeType.WALKTRANSIT)
             transitLeg=1;
-        else if((TourModeType)thisTour.primaryMode.type ==TourModeType.DRIVETRANSIT)
-            transitLeg=1;
+//        else if((TourModeType)thisTour.primaryMode.type ==TourModeType.DRIVETRANSIT)
+//            transitLeg=1;
         
         originTaz = thisTour.getOriginActivity(tripNumber).location.zoneNumber;
         destinationTaz =  thisTour.getDestinationActivity(tripNumber).location.zoneNumber;

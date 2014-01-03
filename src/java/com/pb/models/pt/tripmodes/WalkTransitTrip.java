@@ -58,14 +58,16 @@ public class WalkTransitTrip extends Mode {
                 time= (travelTimeAndCost.walkTransitInVehicleTime
                   + travelTimeAndCost.walkTransitFirstWaitTime
                   + travelTimeAndCost.walkTransitTransferWaitTime
-                  + travelTimeAndCost.walkTransitWalkTime);
+                  + travelTimeAndCost.walkTransitWalkTime
+                  + travelTimeAndCost.transitOvt);
 
                 utility=(
                c[IVT]* travelTimeAndCost.walkTransitInVehicleTime
              + c[FWT]* travelTimeAndCost.walkTransitFirstWaitTime
              + c[XWT]* travelTimeAndCost.walkTransitTransferWaitTime
              + c[WLK]* travelTimeAndCost.walkTransitWalkTime
-             + c[OPCPAS]* travelTimeAndCost.walkTransitFare  );
+             + c[OPCPAS]* travelTimeAndCost.walkTransitFare
+             + c[OVT]* travelTimeAndCost.transitOvt);
 
                if(utility == Double.POSITIVE_INFINITY || utility == Double.NEGATIVE_INFINITY){
                    utility = -999;
@@ -79,6 +81,7 @@ public class WalkTransitTrip extends Mode {
                  logger.info("\t" + c[XWT] + " * " + travelTimeAndCost.walkTransitTransferWaitTime );
                  logger.info("\t" + c[WLK] + " * " + travelTimeAndCost.walkTransitWalkTime );
                  logger.info("\t" + c[OPCPAS] + " * " + travelTimeAndCost.walkTransitFare );
+                 logger.info("\t" + c[OVT] + " * " + travelTimeAndCost.transitOvt );
               }
 
                 hasUtility=true;

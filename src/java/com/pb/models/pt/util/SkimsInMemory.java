@@ -44,7 +44,8 @@ public class SkimsInMemory implements Serializable {
 
     protected static Logger logger = Logger.getLogger(SkimsInMemory.class);
 
-    public MatrixCollection pkwlk, pkdrv, opwlk, opdrv;
+    //public MatrixCollection pkwlk, pkdrv, opwlk, opdrv;
+    public MatrixCollection pkwlk, opwlk;
 
     public Matrix pkTime, pkDist, pkToll, opTime, opDist, opToll;
 
@@ -251,13 +252,13 @@ public class SkimsInMemory implements Serializable {
             fileNames = ResourceUtil.getArray(rb, "sdt.wt.offpeak.skims");
             opwlk = storeTransitSkims(matrixNames, fileNames, transitPath, "wtOp");
 
-            matrixNames = ResourceUtil.getArray(rb, "sdt.dt.peak.names");
-            fileNames = ResourceUtil.getArray(rb, "sdt.dt.peak.skims");
-            pkdrv = storeTransitSkims(matrixNames, fileNames, transitPath, "dtPk");
-
-            matrixNames = ResourceUtil.getArray(rb, "sdt.dt.offpeak.names");
-            fileNames = ResourceUtil.getArray(rb, "sdt.dt.offpeak.skims");
-            opdrv = storeTransitSkims(matrixNames, fileNames, transitPath, "dtOp");
+//            matrixNames = ResourceUtil.getArray(rb, "sdt.dt.peak.names");
+//            fileNames = ResourceUtil.getArray(rb, "sdt.dt.peak.skims");
+//            pkdrv = storeTransitSkims(matrixNames, fileNames, transitPath, "dtPk");
+//
+//            matrixNames = ResourceUtil.getArray(rb, "sdt.dt.offpeak.names");
+//            fileNames = ResourceUtil.getArray(rb, "sdt.dt.offpeak.skims");
+//            opdrv = storeTransitSkims(matrixNames, fileNames, transitPath, "dtOp");
 
         } catch (Exception e) {
             logger.fatal("Error reading travel costs.");
@@ -491,23 +492,24 @@ public class SkimsInMemory implements Serializable {
                             + pkwlk.getValue(destinationTaz, originTaz, "wtPkXwk")
                             + pkwlk.getValue(destinationTaz, originTaz, "wtPkEwk");
                     tc.walkTransitFare = pkwlk.getValue(destinationTaz, originTaz, "wtPkFar");
+                    tc.transitOvt = pkwlk.getValue(destinationTaz,originTaz, "wtPkOvt");
                 }
 
-                tc.driveTransitInVehicleTime = pkdrv.getValue(destinationTaz, originTaz, "dtPkIvt");
-                if (tc.driveTransitInVehicleTime > 0) {
-                    tc.driveTransitFirstWaitTime = pkdrv.getValue(destinationTaz, originTaz, "dtPkFwt");
-                    tc.driveTransitShortFirstWaitTime = min(tc.driveTransitFirstWaitTime, FIRST_WAIT_SEGMENT);
-                    tc.driveTransitLongFirstWaitTime = Math.max((tc.driveTransitFirstWaitTime - FIRST_WAIT_SEGMENT), 0);
-                    tc.driveTransitTotalWaitTime = pkdrv.getValue(destinationTaz, originTaz, "dtPkTwt");
-                    tc.driveTransitTransferWaitTime = Math.max(
-                            (tc.driveTransitTotalWaitTime - tc.driveTransitFirstWaitTime), 0);
-                    tc.driveTransitNumberBoardings = pkdrv.getValue(destinationTaz, originTaz, "dtPkBrd");
-                    tc.driveTransitWalkTime = pkdrv.getValue(destinationTaz, originTaz, "dtPkXwk")
-                            + pkdrv.getValue(destinationTaz, originTaz, "dtPkEwk");
-                    tc.driveTransitDriveTime = pkdrv.getValue(destinationTaz, originTaz, "dtPkDrv");
-                    tc.driveTransitDriveCost = (tc.driveTransitDriveTime / 60) * DRIVE_TRANSIT_MPH;
-                    tc.driveTransitFare = pkdrv.getValue(destinationTaz, originTaz, "dtPkFar");
-                }
+//                tc.driveTransitInVehicleTime = pkdrv.getValue(destinationTaz, originTaz, "dtPkIvt");
+//                if (tc.driveTransitInVehicleTime > 0) {
+//                    tc.driveTransitFirstWaitTime = pkdrv.getValue(destinationTaz, originTaz, "dtPkFwt");
+//                    tc.driveTransitShortFirstWaitTime = min(tc.driveTransitFirstWaitTime, FIRST_WAIT_SEGMENT);
+//                    tc.driveTransitLongFirstWaitTime = Math.max((tc.driveTransitFirstWaitTime - FIRST_WAIT_SEGMENT), 0);
+//                    tc.driveTransitTotalWaitTime = pkdrv.getValue(destinationTaz, originTaz, "dtPkTwt");
+//                    tc.driveTransitTransferWaitTime = Math.max(
+//                            (tc.driveTransitTotalWaitTime - tc.driveTransitFirstWaitTime), 0);
+//                    tc.driveTransitNumberBoardings = pkdrv.getValue(destinationTaz, originTaz, "dtPkBrd");
+//                    tc.driveTransitWalkTime = pkdrv.getValue(destinationTaz, originTaz, "dtPkXwk")
+//                            + pkdrv.getValue(destinationTaz, originTaz, "dtPkEwk");
+//                    tc.driveTransitDriveTime = pkdrv.getValue(destinationTaz, originTaz, "dtPkDrv");
+//                    tc.driveTransitDriveCost = (tc.driveTransitDriveTime / 60) * DRIVE_TRANSIT_MPH;
+//                    tc.driveTransitFare = pkdrv.getValue(destinationTaz, originTaz, "dtPkFar");
+//                }
                 // else it is AM peak
             } else {
                 tc.walkTransitInVehicleTime = pkwlk.getValue(originTaz, destinationTaz, "wtPkIvt");
@@ -523,23 +525,24 @@ public class SkimsInMemory implements Serializable {
                             + pkwlk.getValue(originTaz, destinationTaz, "wtPkXwk")
                             + pkwlk.getValue(originTaz, destinationTaz, "wtPkEwk");
                     tc.walkTransitFare = pkwlk.getValue(originTaz, destinationTaz, "wtPkFar");
+                    tc.transitOvt = pkwlk.getValue(originTaz, destinationTaz, "wtPkOvt");
                 }
 
-                tc.driveTransitInVehicleTime = pkdrv.getValue(originTaz, destinationTaz, "dtPkIvt");
-                if (tc.driveTransitInVehicleTime > 0) {
-                    tc.driveTransitFirstWaitTime = pkdrv.getValue(originTaz, destinationTaz, "dtPkFwt");
-                    tc.driveTransitShortFirstWaitTime = min(tc.driveTransitFirstWaitTime, FIRST_WAIT_SEGMENT);
-                    tc.driveTransitLongFirstWaitTime = max((tc.driveTransitFirstWaitTime - FIRST_WAIT_SEGMENT), 0);
-                    tc.driveTransitTotalWaitTime = pkdrv.getValue(originTaz, destinationTaz, "dtPkTwt");
-                    tc.driveTransitTransferWaitTime = max(
-                            (tc.driveTransitTotalWaitTime - tc.driveTransitFirstWaitTime), 0);
-                    tc.driveTransitNumberBoardings = pkdrv.getValue(originTaz, destinationTaz, "dtPkBrd");
-                    tc.driveTransitWalkTime = pkdrv.getValue(originTaz, destinationTaz, "dtPkXwk")
-                            + pkdrv.getValue(originTaz, destinationTaz, "dtPkEwk");
-                    tc.driveTransitDriveTime = pkdrv.getValue(originTaz, destinationTaz, "dtPkDrv");
-                    tc.driveTransitDriveCost = (tc.driveTransitDriveTime / 60) * DRIVE_TRANSIT_MPH;
-                    tc.driveTransitFare = pkdrv.getValue(originTaz, destinationTaz, "dtPkFar");
-                }
+//                tc.driveTransitInVehicleTime = pkdrv.getValue(originTaz, destinationTaz, "dtPkIvt");
+//                if (tc.driveTransitInVehicleTime > 0) {
+//                    tc.driveTransitFirstWaitTime = pkdrv.getValue(originTaz, destinationTaz, "dtPkFwt");
+//                    tc.driveTransitShortFirstWaitTime = min(tc.driveTransitFirstWaitTime, FIRST_WAIT_SEGMENT);
+//                    tc.driveTransitLongFirstWaitTime = max((tc.driveTransitFirstWaitTime - FIRST_WAIT_SEGMENT), 0);
+//                    tc.driveTransitTotalWaitTime = pkdrv.getValue(originTaz, destinationTaz, "dtPkTwt");
+//                    tc.driveTransitTransferWaitTime = max(
+//                            (tc.driveTransitTotalWaitTime - tc.driveTransitFirstWaitTime), 0);
+//                    tc.driveTransitNumberBoardings = pkdrv.getValue(originTaz, destinationTaz, "dtPkBrd");
+//                    tc.driveTransitWalkTime = pkdrv.getValue(originTaz, destinationTaz, "dtPkXwk")
+//                            + pkdrv.getValue(originTaz, destinationTaz, "dtPkEwk");
+//                    tc.driveTransitDriveTime = pkdrv.getValue(originTaz, destinationTaz, "dtPkDrv");
+//                    tc.driveTransitDriveCost = (tc.driveTransitDriveTime / 60) * DRIVE_TRANSIT_MPH;
+//                    tc.driveTransitFare = pkdrv.getValue(originTaz, destinationTaz, "dtPkFar");
+//                }
             }
             // else it is offpeak
         } else {
@@ -577,22 +580,23 @@ public class SkimsInMemory implements Serializable {
                         + opwlk.getValue(originTaz, destinationTaz, "wtOpXwk")
                         + opwlk.getValue(originTaz, destinationTaz, "wtOpEwk");
                 tc.walkTransitFare = opwlk.getValue(originTaz, destinationTaz, "wtOpFar");
+                tc.transitOvt = opwlk.getValue(originTaz, destinationTaz,"wtOpOvt");
             }
 
-            tc.driveTransitInVehicleTime = opdrv.getValue(originTaz, destinationTaz, "dtOpIvt");
-            if (tc.driveTransitInVehicleTime > 0) {
-                tc.driveTransitFirstWaitTime = opdrv.getValue(originTaz, destinationTaz, "dtOpFwt");
-                tc.driveTransitShortFirstWaitTime = min(tc.driveTransitFirstWaitTime, FIRST_WAIT_SEGMENT);
-                tc.driveTransitLongFirstWaitTime = max((tc.driveTransitFirstWaitTime - FIRST_WAIT_SEGMENT), 0);
-                tc.driveTransitTotalWaitTime = opdrv.getValue(originTaz, destinationTaz, "dtOpTwt");
-                tc.driveTransitTransferWaitTime = max((tc.driveTransitTotalWaitTime - tc.driveTransitFirstWaitTime), 0);
-                tc.driveTransitNumberBoardings = opdrv.getValue(originTaz, destinationTaz, "dtOpBrd");
-                tc.driveTransitWalkTime = opdrv.getValue(originTaz, destinationTaz, "dtOpXwk")
-                        + opdrv.getValue(originTaz, destinationTaz, "dtOpEwk");
-                tc.driveTransitDriveTime = opdrv.getValue(originTaz, destinationTaz, "dtOpDrv");
-                tc.driveTransitDriveCost = (tc.driveTransitDriveTime / 60) * DRIVE_TRANSIT_MPH;
-                tc.driveTransitFare = opdrv.getValue(originTaz, destinationTaz, "dtOpFar");
-            }
+//            tc.driveTransitInVehicleTime = opdrv.getValue(originTaz, destinationTaz, "dtOpIvt");
+//            if (tc.driveTransitInVehicleTime > 0) {
+//                tc.driveTransitFirstWaitTime = opdrv.getValue(originTaz, destinationTaz, "dtOpFwt");
+//                tc.driveTransitShortFirstWaitTime = min(tc.driveTransitFirstWaitTime, FIRST_WAIT_SEGMENT);
+//                tc.driveTransitLongFirstWaitTime = max((tc.driveTransitFirstWaitTime - FIRST_WAIT_SEGMENT), 0);
+//                tc.driveTransitTotalWaitTime = opdrv.getValue(originTaz, destinationTaz, "dtOpTwt");
+//                tc.driveTransitTransferWaitTime = max((tc.driveTransitTotalWaitTime - tc.driveTransitFirstWaitTime), 0);
+//                tc.driveTransitNumberBoardings = opdrv.getValue(originTaz, destinationTaz, "dtOpBrd");
+//                tc.driveTransitWalkTime = opdrv.getValue(originTaz, destinationTaz, "dtOpXwk")
+//                        + opdrv.getValue(originTaz, destinationTaz, "dtOpEwk");
+//                tc.driveTransitDriveTime = opdrv.getValue(originTaz, destinationTaz, "dtOpDrv");
+//                tc.driveTransitDriveCost = (tc.driveTransitDriveTime / 60) * DRIVE_TRANSIT_MPH;
+//                tc.driveTransitFare = opdrv.getValue(originTaz, destinationTaz, "dtOpFar");
+//            }
         }
 
         return tc;
@@ -816,9 +820,9 @@ public class SkimsInMemory implements Serializable {
 
     public void freeTimeMatrices() {
         pkwlk = null;
-        pkdrv = null;
+//        pkdrv = null;
         opwlk = null;
-        opdrv = null;
+//        opdrv = null;
         pkTime = null;
         opTime = null;
     }
@@ -831,10 +835,10 @@ public class SkimsInMemory implements Serializable {
         // check 1
         logger.info("PTAZ " + ptaz + " ATAZ " + ataz);
         float pkwtivt = skims.pkwlk.getValue(ptaz, ataz, "pwtivt");
-        float pkdtfwt = skims.pkdrv.getValue(ptaz, ataz, "pdtfwt");
+//        float pkdtfwt = skims.pkdrv.getValue(ptaz, ataz, "pdtfwt");
         float pktimet = skims.pkTime.getValueAt(ptaz, ataz);
         logger.info("pk walk time " + pkwtivt);
-        logger.info("pk drive fwait " + pkdtfwt);
+//        logger.info("pk drive fwait " + pkdtfwt);
         logger.info("pkTime " + pktimet);
         ptaz = 1;
         ataz = 2;
@@ -842,10 +846,10 @@ public class SkimsInMemory implements Serializable {
         // check 2
         logger.info("PTAZ " + ptaz + " ATAZ " + ataz);
         pkwtivt = skims.pkwlk.getValue(ptaz, ataz, "pwtivt");
-        pkdtfwt = skims.pkdrv.getValue(ptaz, ataz, "pdtfwt");
+//        pkdtfwt = skims.pkdrv.getValue(ptaz, ataz, "pdtfwt");
         pktimet = skims.pkTime.getValueAt(ptaz, ataz);
         logger.info("pk walk time " + pkwtivt);
-        logger.info("pk drive fwait " + pkdtfwt);
+//        logger.info("pk drive fwait " + pkdtfwt);
         logger.info("pkTime " + pktimet);
 
         // check 3
@@ -853,10 +857,10 @@ public class SkimsInMemory implements Serializable {
         ataz = 1240;
         logger.info("PTAZ " + ptaz + " ATAZ " + ataz);
         pkwtivt = skims.pkwlk.getValue(ptaz, ataz, "pwtivt");
-        pkdtfwt = skims.pkdrv.getValue(ptaz, ataz, "pdtfwt");
+//        pkdtfwt = skims.pkdrv.getValue(ptaz, ataz, "pdtfwt");
         pktimet = skims.pkTime.getValueAt(ptaz, ataz);
         logger.info("pk walk time " + pkwtivt);
-        logger.info("pk drive fwait " + pkdtfwt);
+//        logger.info("pk drive fwait " + pkdtfwt);
         logger.info("pkTime " + pktimet);
 
         // check 4
@@ -864,10 +868,10 @@ public class SkimsInMemory implements Serializable {
         ataz = 3;
         logger.info("PTAZ " + ptaz + " ATAZ " + ataz);
         pkwtivt = skims.pkwlk.getValue(ptaz, ataz, "pwtivt");
-        pkdtfwt = skims.pkdrv.getValue(ptaz, ataz, "pdtfwt");
+//        pkdtfwt = skims.pkdrv.getValue(ptaz, ataz, "pdtfwt");
         pktimet = skims.pkTime.getValueAt(ptaz, ataz);
         logger.info("pk walk time " + pkwtivt);
-        logger.info("pk drive fwait " + pkdtfwt);
+//        logger.info("pk drive fwait " + pkdtfwt);
         logger.info("pkTime " + pktimet);
         logger.info(" ");
     }

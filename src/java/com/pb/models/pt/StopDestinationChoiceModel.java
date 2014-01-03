@@ -205,40 +205,40 @@ public class StopDestinationChoiceModel extends TimedModel {
         }
 
         //if drive-transit, set the stop zone to the primary destination zone
-        if(thisTour.primaryMode.type == TourModeType.DRIVETRANSIT ){
-            if(thisTour.intermediateStop1 != null){
-                thisTour.intermediateStop1.location.zoneNumber=thisTour.primaryDestination.location.zoneNumber;
-                thisTour.intermediateStop1.distanceToActivity = skims.getDistance(thisTour.begin.endTime,
-                    thisTour.begin.location.zoneNumber,
-                    thisTour.intermediateStop1.location.zoneNumber);
-
-                thisTour.primaryDestination.distanceToActivity = skims.getDistance(thisTour.intermediateStop1.endTime,
-                  thisTour.intermediateStop1.location.zoneNumber,
-                  thisTour.primaryDestination.location.zoneNumber);
-      
-            }
-            
-            if(thisTour.intermediateStop2 != null){
-                thisTour.intermediateStop2.location.zoneNumber=thisTour.primaryDestination.location.zoneNumber;
-                thisTour.intermediateStop2.distanceToActivity = skims.getDistance(
-                        thisTour.primaryDestination.endTime,
-                        thisTour.primaryDestination.location.zoneNumber,
-                        thisTour.intermediateStop2.location.zoneNumber);
-
-                thisTour.end.distanceToActivity = skims.getDistance(
-                        thisTour.intermediateStop2.endTime,
-                        thisTour.intermediateStop2.location.zoneNumber,
-                        thisTour.end.location.zoneNumber);
-      
-            }
-        
-        }
+//        if(thisTour.primaryMode.type == TourModeType.DRIVETRANSIT ){
+//            if(thisTour.intermediateStop1 != null){
+//                thisTour.intermediateStop1.location.zoneNumber=thisTour.primaryDestination.location.zoneNumber;
+//                thisTour.intermediateStop1.distanceToActivity = skims.getDistance(thisTour.begin.endTime,
+//                    thisTour.begin.location.zoneNumber,
+//                    thisTour.intermediateStop1.location.zoneNumber);
+//
+//                thisTour.primaryDestination.distanceToActivity = skims.getDistance(thisTour.intermediateStop1.endTime,
+//                  thisTour.intermediateStop1.location.zoneNumber,
+//                  thisTour.primaryDestination.location.zoneNumber);
+//
+//            }
+//
+//            if(thisTour.intermediateStop2 != null){
+//                thisTour.intermediateStop2.location.zoneNumber=thisTour.primaryDestination.location.zoneNumber;
+//                thisTour.intermediateStop2.distanceToActivity = skims.getDistance(
+//                        thisTour.primaryDestination.endTime,
+//                        thisTour.primaryDestination.location.zoneNumber,
+//                        thisTour.intermediateStop2.location.zoneNumber);
+//
+//                thisTour.end.distanceToActivity = skims.getDistance(
+//                        thisTour.intermediateStop2.endTime,
+//                        thisTour.intermediateStop2.location.zoneNumber,
+//                        thisTour.end.location.zoneNumber);
+//
+//            }
+//
+//        }
         // set up destination choice parameters
         iStop1PurposeParams = iStop1Params[thisTour.primaryDestination.activityPurpose.ordinal()];
         iStop2PurposeParams = iStop2Params[thisTour.primaryDestination.activityPurpose.ordinal()];
 
         // First run the stop1location model
-        if (thisTour.intermediateStop1 != null && thisTour.primaryMode.type != TourModeType.DRIVETRANSIT) {
+        if (thisTour.intermediateStop1 != null) { // && thisTour.primaryMode.type != TourModeType.DRIVETRANSIT) {
  
             
              // calculate utilities for each taz. Use the ptModel.tazs that were
@@ -396,7 +396,7 @@ public class StopDestinationChoiceModel extends TimedModel {
          }//end of stop1location model
 
          //Now do the stop2location destination choice model
-         if(thisTour.intermediateStop2!=null && thisTour.primaryMode.type != TourModeType.DRIVETRANSIT){
+         if(thisTour.intermediateStop2!=null) { // && thisTour.primaryMode.type != TourModeType.DRIVETRANSIT){
 
             for (Object o : iStop2Model.getAlternatives()) {
 

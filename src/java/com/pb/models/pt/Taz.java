@@ -285,8 +285,8 @@ public abstract class Taz implements Alternative, Comparable, Serializable {
             return;
         
         boolean transitLeg = false;
-        if (mode.type == TourModeType.WALKTRANSIT
-                || mode.type == TourModeType.DRIVETRANSIT)
+        if (mode.type == TourModeType.WALKTRANSIT)
+//                || mode.type == TourModeType.DRIVETRANSIT)
             transitLeg = true;
         // Changes due to PT Calibration constraints
         else if (mode.type == TourModeType.TRANSITPASSENGER && stopNumber == 1)

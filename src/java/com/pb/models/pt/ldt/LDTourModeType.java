@@ -26,10 +26,10 @@ package com.pb.models.pt.ldt;
 public enum LDTourModeType {
     AUTO, 
     AIR, 
-    TRANSIT_WALK,
-    TRANSIT_DRIVE,
-    HSR_WALK,
-    HSR_DRIVE;
+    TRANSIT_WALK;
+//    TRANSIT_DRIVE,
+//    HSR_WALK,
+//    HSR_DRIVE;
     
     /**
      * 
@@ -39,9 +39,9 @@ public enum LDTourModeType {
         if (this.equals(AUTO))  return "car";
         else if (this.equals(AIR))   return "air";
         else if (this.equals(TRANSIT_WALK))   return "icwt";
-        else if (this.equals(TRANSIT_DRIVE)) return "icdt";
-        else if (this.equals(HSR_WALK)) return "icrwt";
-        else if (this.equals(HSR_DRIVE)) return "icrdt";
+//        else if (this.equals(TRANSIT_DRIVE)) return "icdt";
+//        else if (this.equals(HSR_WALK)) return "icrwt";
+//        else if (this.equals(HSR_DRIVE)) return "icrdt";
         else return "none";
     }
 
@@ -57,17 +57,17 @@ public enum LDTourModeType {
             return new String[]{"Ivt", "Far", "Fwt", "Drv"};
         }
         else if (this.equals(TRANSIT_WALK)) {
-            return new String[]{"Ivt", "Biv", "Far", "Fwt", "Twt", "Awk", "Xwk", "Ewk"};
+            return new String[]{"Ivt", "Far", "Fwt", "Twt", "Awk", "Xwk", "Ewk"};
         }
-        else if (this.equals(HSR_WALK)) {
-            return new String[]{"Ivt", "Riv", "Far", "Fwt", "Twt", "Awk", "Xwk", "Ewk", "Frq"};
-        }        
-        else if (this.equals(TRANSIT_DRIVE)) {
-            return new String[]{"Ivt", "Biv", "Far", "Fwt", "Twt", "Xwk", "Drv"};
-        }
-        else if (this.equals(HSR_DRIVE)) {
-            return new String[]{"Ivt", "Riv", "Far", "Fwt", "Twt", "Xwk", "Drv", "Frq"};
-        }
+//        else if (this.equals(HSR_WALK)) {
+//            return new String[]{"Ivt", "Riv", "Far", "Fwt", "Twt", "Awk", "Xwk", "Ewk", "Frq"};
+//        }
+//        else if (this.equals(TRANSIT_DRIVE)) {
+//            return new String[]{"Ivt", "Biv", "Far", "Fwt", "Twt", "Xwk", "Drv"};
+//        }
+//        else if (this.equals(HSR_DRIVE)) {
+//            return new String[]{"Ivt", "Riv", "Far", "Fwt", "Twt", "Xwk", "Drv", "Frq"};
+//        }
         else {
             return new String[]{"none"};
         }

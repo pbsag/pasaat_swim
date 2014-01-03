@@ -84,7 +84,8 @@ public void calcUtility(TravelTimeAndCost inbound, TravelTimeAndCost outbound,
               time = outbound.walkTransitInVehicleTime + inbound.sharedRide2Time
                   + outbound.walkTransitFirstWaitTime
                   + outbound.walkTransitTransferWaitTime
-                  + outbound.walkTransitWalkTime;
+                  + outbound.walkTransitWalkTime
+                  + outbound.transitOvt;
               
               utility=
                   c[IVT]*(outbound.walkTransitInVehicleTime+inbound.sharedRide2Time)
@@ -101,7 +102,8 @@ public void calcUtility(TravelTimeAndCost inbound, TravelTimeAndCost outbound,
                   + c[PASS_TRAN_STOPS]*p.totalStops
                   + c[PASS_H1]*p.size1
                   + c[PASS_H2]*p.size2
-                  + c[PASS_H3]*p.size3p;
+                  + c[PASS_H3]*p.size3p
+                  + c[OVT]*outbound.transitOvt;
 
               if(utility == Double.NEGATIVE_INFINITY || utility == Double.POSITIVE_INFINITY){
                   utility = -999;
@@ -125,6 +127,7 @@ public void calcUtility(TravelTimeAndCost inbound, TravelTimeAndCost outbound,
                   logger.info("\t" + c[PASS_H1]+ "*" + p.size1);
                   logger.info("\t" + c[PASS_H2] + "*" + p.size2);
                   logger.info("\t" + c[PASS_H3] + "*" + p.size3p);
+                  logger.info("\t" + c[OVT] + "*" + outbound.transitOvt);
               }
               
               hasUtility=true;

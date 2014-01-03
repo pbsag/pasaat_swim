@@ -128,7 +128,7 @@ public class Air extends Mode {
             utility = 0;         
             utility += c[INVEHICLETIME ] * tc.inVehicleTime [Air.m];
             utility += c[WALKTIME      ] * tc.walkTime      [Air.m];
-            utility += c[DRIVETIME     ] * tc.driveTime     [Air.m];
+//            utility += c[DRIVETIME     ] * tc.driveTime     [Air.m];
             utility += c[WAITTIME      ] * tc.waitTime      [Air.m];
             utility += c[TERMINALTIME  ] * tc.terminalTime  [Air.m]; 
             utility += c[COSTINC020    ] * cost * hh.inclow;    

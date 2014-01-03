@@ -8,5 +8,5 @@ public enum TourModeType {
     WALKTRANSIT,
     TRANSITPASSENGER,  
     PASSENGERTRANSIT,
-    DRIVETRANSIT
+//    DRIVETRANSIT
 }

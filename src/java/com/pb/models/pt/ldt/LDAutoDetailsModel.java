@@ -110,9 +110,9 @@ public class LDAutoDetailsModel {
         switch (tour.mode) {
         case AIR:           return LDTripModeType.AIR; 
         case TRANSIT_WALK:  return LDTripModeType.TRANSIT_WALK; 
-        case TRANSIT_DRIVE: return LDTripModeType.TRANSIT_DRIVE; 
-        case HSR_WALK:      return LDTripModeType.HSR_WALK; 
-        case HSR_DRIVE:     return LDTripModeType.HSR_DRIVE; 
+//        case TRANSIT_DRIVE: return LDTripModeType.TRANSIT_DRIVE;
+//        case HSR_WALK:      return LDTripModeType.HSR_WALK;
+//        case HSR_DRIVE:     return LDTripModeType.HSR_DRIVE;
         default:                                   
             if (tour.purpose.equals(LDTourPurpose.HOUSEHOLD)) {
                 if (tour.partySize>=3) return LDTripModeType.SR3P; 

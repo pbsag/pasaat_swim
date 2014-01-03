@@ -75,6 +75,7 @@ public class TransitPassenger extends Mode {
                     +inbound.walkTransitFirstWaitTime
                     +inbound.walkTransitTransferWaitTime
                     +inbound.walkTransitWalkTime
+                    +inbound.transitOvt
                );
                utility=(
             c[IVT]*(inbound.walkTransitInVehicleTime+outbound.sharedRide2Time)
@@ -92,6 +93,7 @@ public class TransitPassenger extends Mode {
             + c[PASS_H1]*p.size1
             + c[PASS_H2]*p.size2
             + c[PASS_H3]*p.size3p
+            + c[OVT]*inbound.transitOvt
                );
 
               if(utility == Double.NEGATIVE_INFINITY || utility == Double.POSITIVE_INFINITY){
@@ -117,6 +119,7 @@ public class TransitPassenger extends Mode {
                    logger.info("\t" +  c[PASS_H1]+ "*" +p.size1);
                    logger.info("\t" +  c[PASS_H2]+ "*" +p.size2);
                    logger.info("\t" +  c[PASS_H3]+ "*" +p.size3p);
+                   logger.info("\t" +  c[OVT]+ "*" +inbound.transitOvt);
 
                }
                hasUtility=true;

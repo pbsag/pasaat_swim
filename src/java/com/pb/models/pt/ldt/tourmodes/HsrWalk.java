@@ -50,7 +50,7 @@ public class HsrWalk extends Mode {
         hasUtility = false;
         utility = 0.0D;
         alternativeName = new String("HighSpeedRailWalk");
-        type = LDTourModeType.HSR_WALK;
+//        type = LDTourModeType.HSR_WALK;
         HsrWalk.m = type.ordinal();
     }
 
@@ -101,7 +101,7 @@ public class HsrWalk extends Mode {
             utility += c[COSTINC020] * cost * hh.inclow;
             utility += c[COSTINC2060] * cost * hh.incmed;
             utility += c[COSTINC60P] * cost * hh.inchi;
-            utility += c[CONSTHSR_WALK];
+//            utility += c[CONSTHSR_WALK];
 
             // account for frequency in Oregon
             if (c.length>FREQUENCYCOEFFICIENT) {

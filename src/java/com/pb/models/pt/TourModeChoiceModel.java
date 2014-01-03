@@ -24,7 +24,7 @@ import static com.pb.models.pt.TourModeParameters.NEST;
 import com.pb.models.pt.tourmodes.AutoDriver;
 import com.pb.models.pt.tourmodes.AutoPassenger;
 import com.pb.models.pt.tourmodes.Bike;
-import com.pb.models.pt.tourmodes.DriveTransit;
+//import com.pb.models.pt.tourmodes.DriveTransit;
 import com.pb.models.pt.tourmodes.PassengerTransit;
 import com.pb.models.pt.tourmodes.TransitPassenger;
 import com.pb.models.pt.tourmodes.Walk;
@@ -70,7 +70,7 @@ public class TourModeChoiceModel extends TimedModel {
      protected WalkTransit thisWalkTransit = new WalkTransit();
      protected TransitPassenger thisTransitPassenger = new TransitPassenger();
      protected PassengerTransit thisPassengerTransit = new PassengerTransit();
-     protected DriveTransit thisDriveTransit = new DriveTransit(); 
+     //protected DriveTransit thisDriveTransit = new DriveTransit();
      
      // stores data for solving model for particular tour
      protected TourModePersonAttributes personAttributes = new TourModePersonAttributes();
@@ -106,7 +106,7 @@ public class TourModeChoiceModel extends TimedModel {
          nonMotorizedNest.addAlternative(thisBike);
          
          transitNest.addAlternative(thisWalkTransit);
-         transitNest.addAlternative(thisDriveTransit);
+         //transitNest.addAlternative(thisDriveTransit);
          
          passengerNest.addAlternative(thisPassenger);
          passengerNest.addAlternative(thisPassengerTransit);
@@ -220,7 +220,7 @@ public class TourModeChoiceModel extends TimedModel {
         this.thisWalkTransit.setAvailability(true);
         this.thisTransitPassenger.setAvailability(true);
         this.thisPassengerTransit.setAvailability(true);
-        this.thisDriveTransit.setAvailability(true);
+        //this.thisDriveTransit.setAvailability(true);
         endTiming();
 
         // calculateUtility(params,departCost,returnCost,personAttributes,thisTour,zone);
@@ -237,7 +237,7 @@ public class TourModeChoiceModel extends TimedModel {
         root.setDebug(trace);
         thisBike.setTrace(trace);
         thisDriver.setTrace(trace);
-        thisDriveTransit.setTrace(trace);
+        //thisDriveTransit.setTrace(trace);
         thisPassenger.setTrace(trace);
         thisPassengerTransit.setTrace(trace);
         thisTransitPassenger.setTrace(trace);
@@ -267,8 +267,8 @@ public class TourModeChoiceModel extends TimedModel {
         this.thisPassengerTransit.calcUtility(departCost, returnCost,
                 zoneAttributesDestination, purposeParams, personAttributes);
 
-        this.thisDriveTransit.calcUtility(departCost, returnCost,
-                purposeParams, personAttributes);
+//        this.thisDriveTransit.calcUtility(departCost, returnCost,
+//                purposeParams, personAttributes);
 
         float dispersionParameter = purposeParams[NEST];
         this.autoNest.setDispersionParameter(this.root.getDispersionParameter()/dispersionParameter);
@@ -314,7 +314,7 @@ public class TourModeChoiceModel extends TimedModel {
         root.setDebug(trace);
         thisBike.setTrace(trace);
         thisDriver.setTrace(trace);
-        thisDriveTransit.setTrace(trace);
+//        thisDriveTransit.setTrace(trace);
         thisPassenger.setTrace(trace);
         thisPassengerTransit.setTrace(trace);
         thisTransitPassenger.setTrace(trace);
@@ -328,7 +328,7 @@ public class TourModeChoiceModel extends TimedModel {
         this.thisWalkTransit.setAvailability(true);
         this.thisTransitPassenger.setAvailability(true);
         this.thisPassengerTransit.setAvailability(true);
-        this.thisDriveTransit.setAvailability(true);
+//        this.thisDriveTransit.setAvailability(true);
 
         
         purposeParams = parameters[personAttributes.tourPurpose.ordinal()];
@@ -361,8 +361,8 @@ public class TourModeChoiceModel extends TimedModel {
         this.thisPassengerTransit.calcUtility( departCost, returnCost,
                 zoneAttributesDestination, purposeParams, personAttributes);
         
-        this.thisDriveTransit.calcUtility( departCost, returnCost,
-                purposeParams, personAttributes);
+//        this.thisDriveTransit.calcUtility( departCost, returnCost,
+//                purposeParams, personAttributes);
         
         float dispersionParameter = purposeParams[NEST];
         this.autoNest.setDispersionParameter(this.root.getDispersionParameter() / dispersionParameter);
@@ -407,9 +407,9 @@ public class TourModeChoiceModel extends TimedModel {
             this.thisPassengerTransit.setTrace(true);
             this.thisPassengerTransit.calcUtility( departCost, returnCost,
                     zoneAttributesDestination, purposeParams, personAttributes);
-            this.thisDriveTransit.setTrace(true);
-            this.thisDriveTransit.calcUtility( departCost, returnCost,
-                    purposeParams, personAttributes);
+//            this.thisDriveTransit.setTrace(true);
+//            this.thisDriveTransit.calcUtility( departCost, returnCost,
+//                    purposeParams, personAttributes);
             throw new RuntimeException(e);
         }
         
