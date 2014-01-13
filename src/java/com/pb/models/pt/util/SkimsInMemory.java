@@ -493,6 +493,16 @@ public class SkimsInMemory implements Serializable {
                             + pkwlk.getValue(destinationTaz, originTaz, "wtPkEwk");
                     tc.walkTransitFare = pkwlk.getValue(destinationTaz, originTaz, "wtPkFar");
                     tc.transitOvt = pkwlk.getValue(destinationTaz,originTaz, "wtPkOvt");
+                } else {
+                    tc.walkTransitFirstWaitTime = 0;
+                    tc.walkTransitShortFirstWaitTime = 0;
+                    tc.walkTransitLongFirstWaitTime = 0;
+                    tc.walkTransitTotalWaitTime = 0;
+                    tc.walkTransitTransferWaitTime = 0;
+                    tc.walkTransitNumberBoardings = 0;
+                    tc.walkTransitWalkTime = 0;
+                    tc.walkTransitFare = 0;
+                    tc.transitOvt = 0;
                 }
 
 //                tc.driveTransitInVehicleTime = pkdrv.getValue(destinationTaz, originTaz, "dtPkIvt");
@@ -526,6 +536,16 @@ public class SkimsInMemory implements Serializable {
                             + pkwlk.getValue(originTaz, destinationTaz, "wtPkEwk");
                     tc.walkTransitFare = pkwlk.getValue(originTaz, destinationTaz, "wtPkFar");
                     tc.transitOvt = pkwlk.getValue(originTaz, destinationTaz, "wtPkOvt");
+                } else {
+                    tc.walkTransitFirstWaitTime = 0;
+                    tc.walkTransitShortFirstWaitTime = 0;
+                    tc.walkTransitLongFirstWaitTime = 0;
+                    tc.walkTransitTotalWaitTime = 0;
+                    tc.walkTransitTransferWaitTime = 0;
+                    tc.walkTransitNumberBoardings = 0;
+                    tc.walkTransitWalkTime = 0;
+                    tc.walkTransitFare = 0;
+                    tc.transitOvt = 0;
                 }
 
 //                tc.driveTransitInVehicleTime = pkdrv.getValue(originTaz, destinationTaz, "dtPkIvt");
@@ -581,6 +601,16 @@ public class SkimsInMemory implements Serializable {
                         + opwlk.getValue(originTaz, destinationTaz, "wtOpEwk");
                 tc.walkTransitFare = opwlk.getValue(originTaz, destinationTaz, "wtOpFar");
                 tc.transitOvt = opwlk.getValue(originTaz, destinationTaz,"wtOpOvt");
+            } else {
+                tc.walkTransitFirstWaitTime = 0;
+                tc.walkTransitShortFirstWaitTime = 0;
+                tc.walkTransitLongFirstWaitTime = 0;
+                tc.walkTransitTotalWaitTime = 0;
+                tc.walkTransitTransferWaitTime = 0;
+                tc.walkTransitNumberBoardings = 0;
+                tc.walkTransitWalkTime = 0;
+                tc.walkTransitFare = 0;
+                tc.transitOvt = 0;
             }
 
 //            tc.driveTransitInVehicleTime = opdrv.getValue(originTaz, destinationTaz, "dtOpIvt");
