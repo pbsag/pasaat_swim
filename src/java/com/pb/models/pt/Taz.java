@@ -294,7 +294,7 @@ public abstract class Taz implements Alternative, Comparable, Serializable {
         else if (mode.type == TourModeType.PASSENGERTRANSIT && stopNumber == 2)
             transitLeg = true;
 
-        if (transitLeg && transitGeneralizedCost == 0.0 && walkTime > 120
+        if (transitLeg && transitGeneralizedCost == 0.0 && walkTime > 80
                 && zoneNumber != originTaz)
             return;
 
