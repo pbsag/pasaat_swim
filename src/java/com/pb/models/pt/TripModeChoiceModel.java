@@ -447,10 +447,20 @@ public class TripModeChoiceModel extends TimedModel {
                     file.println();
                     file.println("HHID = " + hhID);
                     file.println("MemberID = " + mID);
+                    
+                    file.println("Tour Origin Zone = " + thisPerson.tourOriginTaz);
+                    file.println("Tour Destination Zone = " + thisPerson.tourDestinationTaz);
+                    
                     file.println("Origin Zone = " + thisPerson.originTaz);
                     file.println("Destination Zone = " + thisPerson.destinationTaz);
+                    
+                    file.println("Passenger leg = " + thisPerson.passengerLeg);
+                    file.println("Transit leg = " + thisPerson.transitLeg);
+                    
                     file.println("TourMode = " + tourMode);   //toString() method returns alternative name.
                     file.println("TourPurpose = "+tourPurpose);
+                    file.println("Trip number = "+thisPerson.tripNumber+ " of "+thisPerson.totalTripsOnTour+" trips on tour");
+                    
                     file.println();
                     file.flush();
     

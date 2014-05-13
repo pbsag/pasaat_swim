@@ -40,10 +40,14 @@ public class TripModePersonAttributes {
     public int inclow;
     public int incmed;
     public int inchi;
+    public int tourOriginTaz;
+    public int tourDestinationTaz;
     public int originTaz;
     public int destinationTaz;
     public int transitLeg;
     public int passengerLeg;
+    public int tripNumber;
+    public int totalTripsOnTour;
 
    /**
     * Default constructor.
@@ -104,8 +108,16 @@ public class TripModePersonAttributes {
 //        else if((TourModeType)thisTour.primaryMode.type ==TourModeType.DRIVETRANSIT)
 //            transitLeg=1;
         
+        tourOriginTaz = thisTour.begin.location.zoneNumber;
+        tourDestinationTaz = thisTour.primaryDestination.location.zoneNumber;
+        
         originTaz = thisTour.getOriginActivity(tripNumber).location.zoneNumber;
         destinationTaz =  thisTour.getDestinationActivity(tripNumber).location.zoneNumber;
+        
+        this.tripNumber = tripNumber;
+        totalTripsOnTour = 2;
+        if(thisTour.hasOutboundStop()) ++totalTripsOnTour;
+        if(thisTour.hasInboundStop()) ++totalTripsOnTour;
         
         //first trip
         if(tripNumber==1){
