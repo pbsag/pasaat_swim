@@ -48,6 +48,9 @@ public class TripModePersonAttributes {
     public int passengerLeg;
     public int tripNumber;
     public int totalTripsOnTour;
+    public short tourOriginDepartTime;
+    public short tourPrimaryDestinationDepartTime;
+    public short tripDepartTime;
 
    /**
     * Default constructor.
@@ -118,6 +121,10 @@ public class TripModePersonAttributes {
         totalTripsOnTour = 2;
         if(thisTour.hasOutboundStop()) ++totalTripsOnTour;
         if(thisTour.hasInboundStop()) ++totalTripsOnTour;
+        
+        tourOriginDepartTime = thisTour.begin.endTime;
+        tourPrimaryDestinationDepartTime = thisTour.primaryDestination.endTime;
+        tripDepartTime = thisTour.getOriginActivity(tripNumber).endTime;
         
         //first trip
         if(tripNumber==1){

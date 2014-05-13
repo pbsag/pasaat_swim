@@ -461,6 +461,10 @@ public class TripModeChoiceModel extends TimedModel {
                     file.println("TourPurpose = "+tourPurpose);
                     file.println("Trip number = "+thisPerson.tripNumber+ " of "+thisPerson.totalTripsOnTour+" trips on tour");
                     
+                    file.println("Tour origin depart time "+thisPerson.tourOriginDepartTime);
+                    file.println("Tour primary destination depart time "+thisPerson.tourPrimaryDestinationDepartTime);
+                    file.println("Trip depart time "+thisPerson.tripDepartTime);
+                    
                     file.println();
                     file.flush();
     
