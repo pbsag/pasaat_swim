@@ -426,29 +426,30 @@ public class PTDataWriter {
     }
 
     /**
-     * Write trips by time-of-day.
+     * Write vmt by time-of-day.
      *
      * @param households Household array
      */
-    public static void writeTODData(HashMap<Short,Integer> startTimes, PrintWriter oFile) {
+    public static void writeTODData(HashMap<Short,Float> vmt, PrintWriter oFile) {
     	
     	logger.info("Writing trips by time-of-day to csv file");
     	
     	//calculate trips by hour of the day
-    	int[] startTrips = new int[24];
+    	float[] startTrips = new float[24];
     	
-    	Iterator i = startTimes.entrySet().iterator();
+    	Iterator i = vmt.entrySet().iterator();
         while(i.hasNext()) {
-          Map.Entry<Short,Integer> me = (Map.Entry) i.next();
-          startTrips[(int)Math.floor(me.getKey()/100.0)-1] = startTrips[(int)Math.floor(me.getKey()/100.0)-1] + me.getValue().intValue();          
+          Map.Entry<Short,Float> me = (Map.Entry) i.next();
+          float val = startTrips[(me.getKey()/100)-1];
+          startTrips[(me.getKey()/100)-1] = val + me.getValue();  
         }
         
         //write header
-    	oFile.println("TIME,TRIPSTARTS");
+    	oFile.println("TIME,VMT");
 
     	//write trips by time-of-day (1600 = 4pm)
-    	for(int j=0; j<startTrips.length; j++) {
-    		oFile.println(((j+1) * 100) + "," + startTrips[j]);
+    	for(int k=0; k<startTrips.length; k++) {
+    		oFile.println(((k+1) * 100) + "," + Math.round(startTrips[k]));
     	}       
         oFile.flush();
     }

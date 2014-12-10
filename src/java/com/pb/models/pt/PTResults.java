@@ -66,7 +66,7 @@ public class PTResults {
     boolean runLDT;
     
     //trips by time-of-day
-	HashMap<Short,Integer> startTimes = new HashMap<Short,Integer>(); 
+	HashMap<Short,Float> startTimes = new HashMap<Short,Float>(); 
     
     public PTResults(ResourceBundle rb, ResourceBundle globalRb){
         this.rb = rb;
@@ -264,7 +264,8 @@ public class PTResults {
     	String todTripsFileName = ResourceUtil.getProperty(globalRb, "sdt.tod.trips.file");
         
         if(todTripsFileName != null) {
-        	calcTODTrips(households);
+        	//calcTODTrips(households);
+        	calcTODVmt(households);
         }
     	
     }
@@ -285,25 +286,25 @@ public class PTResults {
                     
                 	//tour start trip start time
                 	if(startTimes.containsKey(Short.valueOf(tour.begin.endTime))) {
-                		startTimes.put(tour.begin.endTime, startTimes.get(tour.begin.endTime).intValue() + 1);
+                		startTimes.put(tour.begin.endTime, (float) (startTimes.get(tour.begin.endTime).intValue() + 1));
                 	} else {
-                		startTimes.put(tour.begin.endTime, 1);
+                		startTimes.put(tour.begin.endTime, (float) 1);
                 	}
                 	
                 	//tour end trip start time
                 	if(startTimes.containsKey(Short.valueOf(tour.primaryDestination.endTime))) {
-                		startTimes.put(tour.primaryDestination.endTime, startTimes.get(tour.primaryDestination.endTime).intValue() + 1);
+                		startTimes.put(tour.primaryDestination.endTime, (float) (startTimes.get(tour.primaryDestination.endTime).intValue() + 1));
                 	} else {
-                		startTimes.put(tour.primaryDestination.endTime, 1);
+                		startTimes.put(tour.primaryDestination.endTime, (float) 1);
                 	}
                                     	
                     if (tour.intermediateStop1 != null) {
                     	
                     	//tour intermediate stop trip start time
                     	if(startTimes.containsKey(Short.valueOf(tour.intermediateStop1.endTime))) {
-                    		startTimes.put(tour.intermediateStop1.endTime, startTimes.get(tour.intermediateStop1.endTime).intValue() + 1);
+                    		startTimes.put(tour.intermediateStop1.endTime, (float) (startTimes.get(tour.intermediateStop1.endTime).intValue() + 1));
                     	} else {
-                    		startTimes.put(tour.intermediateStop1.endTime, 1);
+                    		startTimes.put(tour.intermediateStop1.endTime, (float) 1);
                     	}
                     	
                     } 
@@ -312,9 +313,9 @@ public class PTResults {
                     	
                     	//tour intermediate stop 2 trip start time
                     	if(startTimes.containsKey(Short.valueOf(tour.intermediateStop2.endTime))) {
-                    		startTimes.put(tour.intermediateStop2.endTime, startTimes.get(tour.intermediateStop2.endTime).intValue() + 1);
+                    		startTimes.put(tour.intermediateStop2.endTime, (float) (startTimes.get(tour.intermediateStop2.endTime).intValue() + 1));
                     	} else {
-                    		startTimes.put(tour.intermediateStop2.endTime, 1);
+                    		startTimes.put(tour.intermediateStop2.endTime, (float) 1);
                     	}
                     	
                     } 
@@ -326,16 +327,16 @@ public class PTResults {
                     	
                     	//work base tour start trip start time
                     	if(startTimes.containsKey(Short.valueOf(tour.begin.endTime))) {
-                    		startTimes.put(tour.begin.endTime, startTimes.get(tour.begin.endTime).intValue() + 1);
+                    		startTimes.put(tour.begin.endTime, (float) (startTimes.get(tour.begin.endTime).intValue() + 1));
                     	} else {
-                    		startTimes.put(tour.begin.endTime, 1);
+                    		startTimes.put(tour.begin.endTime, (float) 1);
                     	}
                     	                    	
                     	//work base tour end trip start time
                     	if(startTimes.containsKey(Short.valueOf(tour.primaryDestination.endTime))) {
-                    		startTimes.put(tour.primaryDestination.endTime, startTimes.get(tour.primaryDestination.endTime).intValue() + 1);
+                    		startTimes.put(tour.primaryDestination.endTime, (float) (startTimes.get(tour.primaryDestination.endTime).intValue() + 1));
                     	} else {
-                    		startTimes.put(tour.primaryDestination.endTime, 1);
+                    		startTimes.put(tour.primaryDestination.endTime, (float) 1);
                     	}
                     	
                     }
@@ -344,6 +345,80 @@ public class PTResults {
             }
         }
     }
+    
+public void calcTODVmt(PTHousehold[] households) {
+        
+        //loop through households and sum VMT
+            for (PTHousehold household : households) {
+                if (household == null) {
+                    continue;
+                }
+                for (PTPerson person : household.persons) {
+                    if (person.getTourCount() == 0) {
+                        continue;
+                    }
+                    
+                    for (Tour tour : person.weekdayTours) {
+                    	
+                    	///////////////////////////////////////////////////////////////////////
+                    	//START TIMES       	
+                    	if(startTimes.containsKey(Short.valueOf(tour.primaryDestination.startTime))) {
+                    		//trip to primary dest
+                    		startTimes.put(tour.primaryDestination.startTime, startTimes.get(tour.primaryDestination.startTime).intValue() + (tour.primaryDestination.distanceToActivity));
+                    	} else {
+                    		startTimes.put(tour.primaryDestination.startTime, (tour.primaryDestination.distanceToActivity));
+                    	}
+                    	
+                       	if(startTimes.containsKey(Short.valueOf(tour.end.startTime))) {
+                       		//last trip back to home
+                    		startTimes.put(tour.end.startTime, startTimes.get(tour.end.startTime).intValue() + (tour.end.distanceToActivity));
+                    	} else {
+                    		startTimes.put(tour.end.startTime, (tour.end.distanceToActivity));
+                    	}
+                                        	
+                        if (tour.intermediateStop1 != null) {
+                        	//tour intermediate stop trip start time
+                        	if(startTimes.containsKey(Short.valueOf(tour.intermediateStop1.startTime))) {
+                        		startTimes.put(tour.intermediateStop1.startTime, startTimes.get(tour.intermediateStop1.startTime).intValue() + (tour.intermediateStop1.distanceToActivity));
+                        	} else {
+                        		startTimes.put(tour.intermediateStop1.startTime, (tour.intermediateStop1.distanceToActivity));
+                        	}	
+                        } 
+
+                        if (tour.intermediateStop2 != null) {
+                        	//tour intermediate stop 2 trip start time
+                        	if(startTimes.containsKey(Short.valueOf(tour.intermediateStop2.startTime))) {
+                        		startTimes.put(tour.intermediateStop2.startTime, startTimes.get(tour.intermediateStop2.startTime).intValue() + (tour.intermediateStop2.distanceToActivity));
+                        	} else {
+                        		startTimes.put(tour.intermediateStop2.startTime, (tour.intermediateStop2.distanceToActivity));
+                        	}
+                        }                       
+                    }
+                    
+                    
+                    // Now print the weekday work based tours - if there are any.
+                    if (person.weekdayWorkBasedTours != null) {
+
+                        for (Tour tour : person.weekdayWorkBasedTours) {
+                  	
+                        	//START TIMES
+                        	if(startTimes.containsKey(Short.valueOf(tour.primaryDestination.startTime))) {
+                        		startTimes.put(tour.primaryDestination.startTime, startTimes.get(tour.primaryDestination.startTime).intValue() + (tour.primaryDestination.distanceToActivity));
+                        	} else {
+                        		startTimes.put(tour.primaryDestination.startTime, (tour.primaryDestination.distanceToActivity));
+                        	} 
+                        	
+                        	if(startTimes.containsKey(Short.valueOf(tour.end.startTime))) {
+                        		startTimes.put(tour.end.startTime, startTimes.get(tour.end.startTime).intValue() + (tour.end.distanceToActivity));
+                        	} else {
+                        		startTimes.put(tour.end.startTime, (tour.end.distanceToActivity));
+                        	}                      	
+                        }
+                    }
+
+                }
+            }
+        }
     
     public void writeSummaryFiles() {
     	
