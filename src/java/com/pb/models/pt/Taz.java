@@ -264,7 +264,7 @@ public abstract class Taz implements Alternative, Comparable, Serializable {
     public void calcStopDestinationUtility(ActivityPurpose actPurpose,
             float[] params, Mode mode, int originTaz, int destinationTaz,
             float autoTime, float walkTime, float bikeTime, float transitGeneralizedCost,
-            float[] autoDists, int stopNumber, float distanceFromHome) {
+            float[] autoDists, int stopNumber, float distanceFromHome, float distanceFromPrimaryDestination) {
         utility = -999;
         isAvailable = false;
         
@@ -294,7 +294,7 @@ public abstract class Taz implements Alternative, Comparable, Serializable {
         else if (mode.type == TourModeType.PASSENGERTRANSIT && stopNumber == 2)
             transitLeg = true;
 
-        if (transitLeg && transitGeneralizedCost == 0.0 && walkTime > 80
+        if (transitLeg && transitGeneralizedCost == 0.0 && ((distanceFromHome>4)||(distanceFromPrimaryDestination>4))
                 && zoneNumber != originTaz)
             return;
 

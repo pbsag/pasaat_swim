@@ -261,7 +261,7 @@ public class StopDestinationChoiceModel extends TimedModel {
                 float[] autoDists = skims.getAdditionalAutoDistance(
                         thisTour.begin.location.zoneNumber,
                         thisTour.primaryDestination.location.zoneNumber,
-                        stop1Taz.zoneNumber,thisPerson.homeTaz, thisTour.begin.endTime);
+                        stop1Taz.zoneNumber, thisTour.begin.endTime);
 
                 // check to make sure within distance threshold of anchor location.
                 //need to allow stops within same zone, even if it goes over distance threshold
@@ -278,6 +278,7 @@ public class StopDestinationChoiceModel extends TimedModel {
                 
                 // get the distance from home
                 float distFromHome = skims.getDistance(thisTour.begin.endTime, thisPerson.homeTaz, stop1Taz.zoneNumber);
+                float distFromPrimDest = skims.getDistance(thisTour.begin.endTime, stop1Taz.zoneNumber, thisTour.primaryDestination.location.zoneNumber);
 
                 
                 //calculate walk time for walk modes and transit modes (in case stop zone is not connected by transit)
@@ -319,7 +320,7 @@ public class StopDestinationChoiceModel extends TimedModel {
                         iStop1PurposeParams, thisTour.primaryMode,
                         thisTour.begin.location.zoneNumber, thisTour.primaryDestination.location.zoneNumber, 
                         autoTime, walkTime,
-                        bikeTime, transitGeneralizedCost, autoDists, 1, distFromHome);
+                        bikeTime, transitGeneralizedCost, autoDists, 1, distFromHome,distFromPrimDest);
 
                 if (trace) {
                     logger.info("Stop 1 " + stop1Taz.zoneNumber + " utility: "
@@ -409,7 +410,7 @@ public class StopDestinationChoiceModel extends TimedModel {
 
                  float[] autoDists = skims.getAdditionalAutoDistance(thisTour.primaryDestination.location.zoneNumber,
                          thisTour.end.location.zoneNumber,
-                         stop2Taz.zoneNumber,thisPerson.homeTaz,
+                         stop2Taz.zoneNumber,
                          thisTour.primaryDestination.endTime);
 
                  // check to make sure within distance threshold of anchor location.
@@ -428,6 +429,7 @@ public class StopDestinationChoiceModel extends TimedModel {
                  
                  // get the distance from home
                  float distFromHome = skims.getDistance(thisTour.begin.endTime, thisPerson.homeTaz, stop2Taz.zoneNumber);
+                 float distFromPrimDest = skims.getDistance(thisTour.begin.endTime, thisTour.primaryDestination.location.zoneNumber,stop2Taz.zoneNumber);
 
                  
                  //calculate walk time for walk mode or for transit mode (you might be able to walk to the stop)
@@ -478,7 +480,7 @@ public class StopDestinationChoiceModel extends TimedModel {
                          transitGeneralizedCost,
                          autoDists,
                          2, 
-                         distFromHome
+                         distFromHome, distFromPrimDest
                  );
 
 

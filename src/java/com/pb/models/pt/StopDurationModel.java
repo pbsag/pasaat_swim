@@ -347,7 +347,7 @@ public class StopDurationModel extends TimedModel {
                 float[] dists = skims.getAdditionalAutoDistance(
                         tour.begin.location.zoneNumber,
                         tour.primaryDestination.location.zoneNumber,
-                        stop.location.zoneNumber, person.homeTaz,start);
+                        stop.location.zoneNumber,start);
                 float deviation = dists[1] - dists[0];
                 double term = param * duration * deviation;
                 utility += term;

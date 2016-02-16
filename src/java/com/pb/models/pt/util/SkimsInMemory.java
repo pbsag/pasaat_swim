@@ -822,8 +822,7 @@ public class SkimsInMemory implements Serializable {
     /**
      * Returns an array of auto distances where first element is distance from
      * origin taz (fromTaz) to primary destination taz and second element is
-     * distance from origin taz (fromTaz) to stop taz. Third and fourth elements 
-     * are from home->stop and from stop->home
+     * distance from origin taz (fromTaz) to stop taz + distance from stop to destination.
      * 
      * @param fromTaz The anchor location.
      * @param toTaz The primary destination.
@@ -831,7 +830,7 @@ public class SkimsInMemory implements Serializable {
      * @param time Time period.
      * @return 2-d array, element 0=Distft , element 1=Distfs
      */
-    public float[] getAdditionalAutoDistance(int fromTaz, int toTaz, int stopTaz, int homeTaz, int time) {
+    public float[] getAdditionalAutoDistance(int fromTaz, int toTaz, int stopTaz, int time) {
 
         float[] autoDists = new float[2];
 
