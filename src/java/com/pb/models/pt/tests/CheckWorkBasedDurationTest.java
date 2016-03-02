@@ -8,12 +8,13 @@
 package com.pb.models.pt.tests;
 
 import com.pb.common.util.ResourceUtil;
-
 import com.pb.models.pt.WorkBasedTourModel;
 
 import junit.framework.TestCase;
+
 import org.apache.log4j.Logger;
 
+import java.util.Random;
 import java.util.ResourceBundle;
   
 public class CheckWorkBasedDurationTest extends TestCase {
@@ -33,10 +34,11 @@ public class CheckWorkBasedDurationTest extends TestCase {
         WorkBasedTourModel wbm= new WorkBasedTourModel(rb);
        
         wbm.readPctWorkBasedDuration(rb);
+        Random random = new Random();
         try{
             for(int i=0;i<20;i++) {
-                logger.info("PRIM_COL "+i+"="+wbm.drawFromAccumulativeDistribution(PRIM_COL));
-                logger.info("FIRST_COL "+i+"="+wbm.drawFromAccumulativeDistribution(FIRST_COL));
+                logger.info("PRIM_COL "+i+"="+wbm.drawFromAccumulativeDistribution(PRIM_COL,random));
+                logger.info("FIRST_COL "+i+"="+wbm.drawFromAccumulativeDistribution(FIRST_COL,random));
             }
         }        
         catch (Exception e) {
