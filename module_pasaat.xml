@@ -41,7 +41,7 @@
   
   <target name="compile.module.pasaat" depends="compile.module.common-base, compile.module.common-daf-v2, compile.module.reference, compile.module.utils" description="compile module pasaat production classes">
     <mkdir dir="${pasaat_swim.output.dir}"/>
-    <javac destdir="${pasaat_swim.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memoryMaximumSize="${compiler.max.memory}" fork="true" executable="${module.jdk.home.pasaat}/bin/javac">
+    <javac destdir="${pasaat_swim.output.dir}" includeantruntime="false"  debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memoryMaximumSize="${compiler.max.memory}" fork="true" executable="${module.jdk.home.pasaat}/bin/javac">
       <compilerarg line="${compiler.args.pasaat}"/>
       <bootclasspath refid="pasaat_swim.module.bootclasspath"/>
       <classpath refid="pasaat_swim.module.classpath"/>
