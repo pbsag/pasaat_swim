@@ -158,13 +158,12 @@ public class StopDestinationChoiceModel extends TimedModel {
         if (trace) {
             logger.info("Tracing stop destination choice for a tour between "
                     + thisTour.begin.location.zoneNumber + " and "
-                    + thisTour.end.location.zoneNumber + " with " +
-                      thisTour.primaryDestination.location.zoneNumber);
+                    + thisTour.primaryDestination.location.zoneNumber);
             logger.info("Distance threshold set to " + distanceThreshold);
             logger.info("HHID " + thisHousehold.ID + ", Person " + thisPerson.memberID
                     + ", Tour " + thisTour.tourNumber + ", ActivityPurpose " + thisTour.getPurpose()
                     + ", Origin "+ thisTour.begin.location.zoneNumber
-                    + ", Primary destination "+ thisTour.end.location.zoneNumber
+                    + ", Primary destination "+ thisTour.primaryDestination.location.zoneNumber
                     + ", Intermediate stop 1:  " + (thisTour.intermediateStop1 == null ? "no" : "yes")
                     + ", Intermediate stop 2:  " + (thisTour.intermediateStop2 == null ? "no" : "yes"));
 
