@@ -1,3 +1,2 @@
-.metadata/
-.classpath
-.project
+release/
+build/*
