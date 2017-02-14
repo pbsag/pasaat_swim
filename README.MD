@@ -21,7 +21,7 @@ pasaat_swim includes copies of the dependent jars since the souce code is privat
   2. Right click on build.xml and select Run As and then External tools configurations
   2. Go to the Targets tab and check "release"
   3. Click Run to build 
-5. pasaat.jar is the release version
+5. pasaat.jar in the release folder is the release version
 
 
 
