@@ -6,7 +6,6 @@ The pasaat_swim dependencies are:
 
   - [CMF (common base)](https://github.com/pbsag/cmf) (this is a private repo)
   - [reference](https://github.com/pbsag/reference) (this is a private repo)
-  - [synpop](https://github.com/pbsag/synpop) (this is a private repo)
   - [utils](https://github.com/pbsag/utils) (this is a private repo)
   - log4j
     
