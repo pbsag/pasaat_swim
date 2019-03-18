@@ -64,6 +64,8 @@ public class PTResults {
     ResourceBundle rb;
     ResourceBundle globalRb;
     boolean runLDT;
+    boolean writeTours;
+    boolean writePatterns;
     
     //trips by time-of-day
 	HashMap<Short,Float> startTimes = new HashMap<Short,Float>(); 
@@ -78,8 +80,18 @@ public class PTResults {
      * Convenience method for the resident short-distance model outputs
      */
     public void createFiles(){
-        weekdayTour = open(ResourceUtil.getProperty(rb, "sdt.person.tours"));
-        weekdayTour.println("hhID,memberID,personAge,weekdayTour(yes/no)," +
+    	
+    	
+    	if(!rb.containsKey("sdt.person.tours"))
+    		writeTours=false;
+    	else if (ResourceUtil.getProperty(rb, "sdt.person.tours")=="")
+    		writeTours=false;
+    	else
+    		writeTours=true;
+    	
+    	if(writeTours) {
+    		weekdayTour = open(ResourceUtil.getProperty(rb, "sdt.person.tours"));
+    		weekdayTour.println("hhID,memberID,personAge,weekdayTour(yes/no)," +
                 "initialTourString,completedTourString,tour#,departDist," +
                 "activityPurpose,startTime,endTime,timeToActivity," +
                 "distanceToActivity,tripMode,location," +
@@ -91,15 +103,23 @@ public class PTResults {
                 "distanceToActivity,tripMode,location," +
                 "activityPurpose,startTime,endTime,timeToActivity," +
                 "distanceToActivity,tripMode,location,primaryMode");
-
+    	}
         weekdayTrip = createTripFile("sdt.person.trips");
 
-        weekdayPattern = open(ResourceUtil.getProperty(rb,
+       	if(!rb.containsKey("sdt.person.patterns"))
+       		writePatterns=false;
+    	else if (ResourceUtil.getProperty(rb, "sdt.person.patterns")=="")
+    		writePatterns=false;
+    	else
+    		writePatterns=true;
+        
+        if(writePatterns) {
+        	weekdayPattern = open(ResourceUtil.getProperty(rb,
                 "sdt.person.patterns"));
-        weekdayPattern.println("hhID,memberID,personAge,dayPatternLogsum,dayPattern,"
+        	weekdayPattern.println("hhID,memberID,personAge,dayPatternLogsum,dayPattern,"
                 + "nWeekdayTours,nWorkTours,nSchoolTours,"
                 + "nShopTours,nRecreateTours,nOtherTours");
-
+        }
         householdData = createHouseholdDataFile("sdt.household.data");
 
         personData = createPersonDataFile("sdt.person.data");
@@ -174,7 +194,9 @@ public class PTResults {
      */
     public void writeResults(PTHousehold[] households) {
         logger.info("Writing patterns and tours to csv file");
-        PTDataWriter.writeToursToTextFile(households, weekdayTour, true);
+        
+        if(writeTours)
+        	PTDataWriter.writeToursToTextFile(households, weekdayTour, true);
         writeTrips(households);
         PTDataWriter.writeWeekdayPatternsToFile(households, weekdayPattern);
         writeHouseholdData(households);
@@ -220,15 +242,18 @@ public class PTResults {
      * Convenience method for resident short-distance models
      */
     public void close(){
-        logger.info("Closing tour, pattern and trip output files.");
-        weekdayTour.flush();
-        weekdayTour.close();
-
+        logger.info("Closing PT output files.");
+        
+        if(writeTours) {
+        	weekdayTour.flush();
+        	weekdayTour.close();
+        }
         closeTripFile();
 
-        weekdayPattern.flush();
-        weekdayPattern.close();
-
+        if(writePatterns) {
+        	weekdayPattern.flush();
+        	weekdayPattern.close();
+        }
         closeHouseholdData();
 
         closePersonData();

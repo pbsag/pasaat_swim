@@ -2,10 +2,10 @@
 <classpath>
 	<classpathentry kind="src" path="src/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/projects/development/pasaat_swim/src/common-base.jar"/>
-	<classpathentry kind="lib" path="C:/projects/development/pasaat_swim/src/common-daf-v2.jar"/>
-	<classpathentry kind="lib" path="C:/projects/development/pasaat_swim/src/log4j-1.2.9.jar"/>
-	<classpathentry kind="lib" path="C:/projects/development/pasaat_swim/src/reference.jar"/>
-	<classpathentry kind="lib" path="C:/projects/development/pasaat_swim/src/utils.jar"/>
+	<classpathentry kind="lib" path="/tlumip/src/common-base.jar"/>
+	<classpathentry kind="lib" path="/tlumip/src/common-daf-v2.jar"/>
+	<classpathentry kind="lib" path="/tlumip/src/log4j-1.2.9.jar"/>
+	<classpathentry kind="lib" path="/tlumip/src/reference.jar"/>
+	<classpathentry kind="lib" path="/tlumip/src/utils.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
